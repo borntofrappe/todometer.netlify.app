@@ -1,4 +1,5 @@
 ---
+import LightDarkImage from "../components/LightDarkImage.astro";
 import todometerAppLight from "../images/todometer-app-light.png";
 import todometerAppDark from "../images/todometer-app-dark.png";
 ---
@@ -19,33 +20,10 @@ import todometerAppDark from "../images/todometer-app-dark.png";
     </a>
   </div>
 
-  <picture>
-    <source
-      srcset={todometerAppDark.src}
-      media="(prefers-color-scheme: dark)"
-      width="1200"
-      height="900"
-    />
-    <img src={todometerAppLight.src} alt="" width="1200" height="900" />
-  </picture>
+  <LightDarkImage light={todometerAppLight} dark={todometerAppDark} alt="" />
 </main>
 
 <style>
-  main {
-    > * + * {
-      margin-block-start: var(--size-3);
-    }
-
-    & > div {
-      margin-block-start: var(--size-7);
-    }
-
-    & > picture {
-      display: block;
-      margin-block-start: var(--size-9);
-    }
-  }
-
   main {
     padding: var(--size-10) var(--size-2) var(--size-8);
 
@@ -55,15 +33,25 @@ import todometerAppDark from "../images/todometer-app-dark.png";
     }
   }
 
-  picture {
-    max-inline-size: unset;
-    inline-size: min(90svi, 1000px);
+  main {
+    > * + * {
+      margin-block-start: var(--size-3);
+    }
+
+    & > div {
+      margin-block-start: var(--size-7);
+    }
   }
 
-  img {
+  main :global(picture) {
     display: block;
-    max-width: 100%;
-    height: auto;
+    margin-block-start: var(--size-8);
+    max-inline-size: 100%;
+    inline-size: min(90svi, 1000px);
+    margin-inline: auto;
+  }
+
+  main :global(picture img) {
     border-radius: 1%;
     --color-shadow-1: light-dark(transparent, var(--gray-8));
     --color-shadow-2: light-dark(var(--gray-4), var(--gray-12));
