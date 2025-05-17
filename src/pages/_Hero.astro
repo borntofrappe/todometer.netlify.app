@@ -69,7 +69,7 @@ import todometerAppDark from "../images/todometer-app-dark.png";
   p {
     text-align: center;
     font-size: var(--font-size-2);
-    color: var(--color-sub);
+    color: var(--color-text-2);
     text-wrap: balance;
   }
 
@@ -99,16 +99,17 @@ import todometerAppDark from "../images/todometer-app-dark.png";
   }
 
   a.invert {
-    color: var(--color-bg);
-    background: var(--color-main);
-    transition: background 0.2s;
+    color: var(--color-surface);
+    background: var(--color-text-1);
+    transition: background var(--transition-duration)
+      var(--transition-timing-function);
 
     &:hover {
-      background: oklch(from var(--color-main) calc(l * 0.9) c h);
+      background: oklch(from var(--color-text-1) calc(l * 0.9) c h);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--color-main);
+      outline: 2px solid var(--color-text-1);
       outline-offset: 2px;
     }
   }
