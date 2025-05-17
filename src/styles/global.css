@@ -4,8 +4,10 @@
   margin: 0;
 }
 
-:root {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
 }
 
 :focus-visible {
@@ -14,13 +16,16 @@
 }
 
 body {
+  --color-text-1: light-dark(var(--gray-10), var(--gray-3));
+  --color-text-2: light-dark(var(--gray-8), var(--gray-5));
+  --color-surface: light-dark(var(--gray-1), var(--gray-11));
+  --transition-duration: 0.25s;
+  --transition-timing-function: var(--ease-in-out-2);
+
   color-scheme: light dark;
+  color: var(--color-text-1);
+  background: var(--color-surface);
   font-family: system-ui;
-  --color-main: light-dark(var(--gray-10), var(--gray-3));
-  --color-sub: light-dark(var(--gray-8), var(--gray-5));
-  --color-bg: light-dark(var(--gray-1), var(--gray-11));
-  color: var(--color-main);
-  background: var(--color-bg);
   line-height: 1.6;
 }
 
