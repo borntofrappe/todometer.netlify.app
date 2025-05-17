@@ -1,0 +1,102 @@
+---
+import Windows from "../images/windows.svg";
+---
+
+<div>
+  <h2>Download</h2>
+  <p>Latest version <span>0.1.0</span></p>
+
+  <ul>
+    <li>
+      <a href="/TODO_ADD_LINK" download>
+        <Windows width="1em" height="1em" />
+        windows
+        <small>.exe</small>
+      </a>
+    </li>
+    <li>
+      <a href="/TODO_ADD_LINK" download>
+        <Windows width="1em" height="1em" />
+        windows
+        <small>.msi</small>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<style>
+  div {
+    padding: var(--size-10) var(--size-3);
+    max-inline-size: var(--size-content-3);
+    margin-inline: auto;
+  }
+
+  div {
+    > * + * {
+      margin-block-start: var(--size-3);
+    }
+
+    > ul {
+      margin-block: var(--size-7);
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-size: var(--font-size-5);
+  }
+
+  p {
+    text-align: center;
+    color: var(--color-text-2);
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-1);
+    justify-content: center;
+  }
+
+  a {
+    text-decoration: none;
+    display: block;
+    font-weight: 700;
+    font-size: var(--font-size-2);
+    color: var(--color-text-2);
+    padding: var(--size-2) var(--size-3);
+    border-radius: var(--radius-2);
+    transition-property: color, background;
+    transition-timing-function: var(--transition-timing-function);
+    transition-duration: var(--transition-duration);
+
+    > svg {
+      width: 1.25em;
+      height: 1.25em;
+      translate: 0 0.25em;
+    }
+
+    & > small {
+      color: var(--color-text-2);
+      font-weight: 400;
+      font-size: var(--font-size-1);
+
+      &::before {
+        content: "(";
+      }
+
+      &::after {
+        content: ")";
+      }
+    }
+
+    &:hover {
+      color: var(--color-text-1);
+      background: light-dark(
+        oklch(from currentColor l c h / 0.05),
+        oklch(from currentColor l c h / 0.1)
+      );
+    }
+  }
+</style>
