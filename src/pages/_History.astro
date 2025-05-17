@@ -1,0 +1,40 @@
+<div>
+  <h2>What is this?</h2>
+  <p>
+    <a href="https://cassidoo.co/">Cassidy Williams</a> once built
+    <a href="https://cassidoo.github.io/todometer/">todometer</a> to scratch a personal
+    itch. She succeeded with React and Electron.
+  </p>
+  <p>
+    Fancing giving Tauri a try, I attempt to recreate the application with
+    Svelte and the Rust-powered framework.
+  </p>
+</div>
+
+<style>
+  div {
+    padding: var(--size-10) var(--size-3);
+    max-inline-size: var(--size-content-3);
+    margin-inline: auto;
+  }
+
+  div {
+    > * + * {
+      margin-block-start: var(--size-3);
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-size: var(--font-size-5);
+  }
+
+  a {
+    font-weight: 700;
+    color: inherit;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+</style>
