@@ -1,43 +1,132 @@
 ---
 import Windows from "../images/windows.svg";
+import Linux from "../images/linux.svg";
+import Apple from "../images/apple.svg";
+
+type File = {
+  extension: string;
+  url: string;
+};
+type Platform = "windows" | "macOS" | "linux";
+type Download = {
+  label: Platform;
+  files: File[];
+  Icon: ((_props: astroHTML.JSX.SVGAttributes) => any) & ImageMetadata;
+};
+
+const downloads: Download[] = [
+  {
+    label: "windows",
+    files: [
+      {
+        extension: "exe",
+        url: "/TODO_ADD_LINK",
+      },
+      {
+        extension: "msi",
+        url: "/TODO_ADD_LINK",
+      },
+    ],
+    Icon: Windows,
+  },
+  {
+    label: "macOS",
+    files: [
+      {
+        extension: "app",
+        url: "/TODO_ADD_LINK",
+      },
+      {
+        extension: "dmg",
+        url: "/TODO_ADD_LINK",
+      },
+    ],
+    Icon: Apple,
+  },
+  {
+    label: "linux",
+    files: [
+      {
+        extension: "deb",
+        url: "/TODO_ADD_LINK",
+      },
+      {
+        extension: "rpm",
+        url: "/TODO_ADD_LINK",
+      },
+    ],
+    Icon: Linux,
+  },
+];
 ---
 
-<div id="download">
+<div id="download" class="region">
   <h2>Download</h2>
   <p>Latest version <span>0.1.0</span></p>
 
-  <ul>
-    <li>
-      <a href="/TODO_ADD_LINK" download>
-        <Windows width="1em" height="1em" />
-        windows
-        <small>.exe</small>
-      </a>
-    </li>
-    <li>
-      <a href="/TODO_ADD_LINK" download>
-        <Windows width="1em" height="1em" />
-        windows
-        <small>.msi</small>
-      </a>
-    </li>
-  </ul>
+  <div class="platforms">
+    {
+      downloads.map(({ label, files, Icon }) => (
+        <div class:list={["platform", label]}>
+          <Icon width="64" height="64" />
+          <ul>
+            {files.map((file) => (
+              <li>
+                <a href={file.url} download>
+                  {label}
+                  <small>.{file.extension}</small>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
 </div>
 
 <style>
-  div {
+  .region {
     padding: var(--size-10) var(--size-3);
     max-inline-size: var(--size-content-3);
     margin-inline: auto;
   }
 
-  div {
+  .region {
     > * + * {
       margin-block-start: var(--size-3);
     }
 
     > ul {
-      margin-block: var(--size-7);
+      margin-block-start: var(--size-7);
+    }
+
+    > .platforms {
+      margin-block-start: var(--size-7);
+    }
+  }
+
+  .platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-6) var(--size-3);
+    > * {
+      flex-grow: 1;
+      flex-basis: calc((30rem - 100%) * 999);
+    }
+  }
+
+  .platform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--size-2);
+
+    > svg {
+      display: block;
+      max-width: 64px;
+      width: 100%;
+      height: auto;
     }
   }
 
@@ -53,10 +142,22 @@ import Windows from "../images/windows.svg";
 
   ul {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--size-1);
-    justify-content: center;
+  }
+
+  .platform:has(a) svg {
+    color: var(--color-text-2);
+    transition-property: color, filter;
+    transition-timing-function: var(--transition-timing-function);
+    transition-duration: var(--transition-duration);
+  }
+
+  .platform:has(a:hover) svg {
+    --color-drop-shadow: light-dark(
+      oklch(from currentColor l c h / 0.25),
+      oklch(from currentColor l c h / 0.6)
+    );
+    color: var(--color-text-1);
+    filter: drop-shadow(0 0 10px var(--color-drop-shadow));
   }
 
   a {
