@@ -7,16 +7,18 @@ type File = {
   extension: string;
   url: string;
 };
+
 type Platform = "windows" | "macOS" | "linux";
+
 type Download = {
-  label: Platform;
+  platform: Platform;
   files: File[];
   Icon: ((_props: astroHTML.JSX.SVGAttributes) => any) & ImageMetadata;
 };
 
 const downloads: Download[] = [
   {
-    label: "windows",
+    platform: "windows",
     files: [
       {
         extension: "exe",
@@ -30,7 +32,7 @@ const downloads: Download[] = [
     Icon: Windows,
   },
   {
-    label: "macOS",
+    platform: "macOS",
     files: [
       {
         extension: "app",
@@ -44,7 +46,7 @@ const downloads: Download[] = [
     Icon: Apple,
   },
   {
-    label: "linux",
+    platform: "linux",
     files: [
       {
         extension: "deb",
@@ -66,14 +68,14 @@ const downloads: Download[] = [
 
   <div class="platforms">
     {
-      downloads.map(({ label, files, Icon }) => (
-        <div class:list={["platform", label]}>
+      downloads.map(({ platform, files, Icon }) => (
+        <div class="platform">
           <Icon width="64" height="64" />
           <ul>
             {files.map((file) => (
               <li>
                 <a href={file.url} download>
-                  {label}
+                  {platform}
                   <small>.{file.extension}</small>
                 </a>
               </li>
