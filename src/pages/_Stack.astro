@@ -60,8 +60,12 @@ import SQLite from "../images/sqlite.svg";
     }
 
     &:hover {
+      --color-drop-shadow: light-dark(
+        oklch(from currentColor l c h / 0.25),
+        oklch(from currentColor l c h / 0.6)
+      );
       color: var(--color-text-1);
-      filter: drop-shadow(0 0 10px oklch(from currentColor l c h / 0.1));
+      filter: drop-shadow(0 0 10px var(--color-drop-shadow));
 
       &::before {
         transition-delay: 1s;
