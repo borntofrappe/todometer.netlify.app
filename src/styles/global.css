@@ -5,7 +5,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html:focus-within {
+  html {
     scroll-behavior: smooth;
   }
 }
