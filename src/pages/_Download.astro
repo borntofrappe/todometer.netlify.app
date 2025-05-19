@@ -4,7 +4,7 @@ import Linux from "../images/linux.svg";
 import Apple from "../images/apple.svg";
 
 type File = {
-  extension: string;
+  label: string;
   url: string;
 };
 
@@ -21,11 +21,11 @@ const downloads: Download[] = [
     platform: "windows",
     files: [
       {
-        extension: "exe",
+        label: "exe",
         url: "/TODO_ADD_LINK",
       },
       {
-        extension: "msi",
+        label: "msi",
         url: "/TODO_ADD_LINK",
       },
     ],
@@ -35,11 +35,11 @@ const downloads: Download[] = [
     platform: "macOS",
     files: [
       {
-        extension: "app",
+        label: "intel",
         url: "/TODO_ADD_LINK",
       },
       {
-        extension: "dmg",
+        label: "silicon",
         url: "/TODO_ADD_LINK",
       },
     ],
@@ -49,11 +49,11 @@ const downloads: Download[] = [
     platform: "linux",
     files: [
       {
-        extension: "deb",
+        label: "deb",
         url: "/TODO_ADD_LINK",
       },
       {
-        extension: "rpm",
+        label: "rpm",
         url: "/TODO_ADD_LINK",
       },
     ],
@@ -76,7 +76,7 @@ const downloads: Download[] = [
               <li>
                 <a href={file.url} download>
                   {platform}
-                  <small>.{file.extension}</small>
+                  <small>{file.label}</small>
                 </a>
               </li>
             ))}
